@@ -1,6 +1,6 @@
 
 import { chromium, Browser, Page } from 'playwright';
-import * as fs from 'fs';
+
 
 describe('Website counters', () => {
   let browser: Browser;
@@ -17,6 +17,14 @@ describe('Website counters', () => {
 
 
   test('Counters display correctly', async () => {
+
+    await page.route('https://www.avito.ru/web/1/charity/ecoImpact/init', (route) => {
+        route.fulfill({
+            body: JSON.stringify(require('./test_1.json')),
+        });
+    });
+
+
     await page.goto('https://www.avito.ru/avito-care/eco-impact');
 
 
