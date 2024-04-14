@@ -24,7 +24,7 @@ describe("Website counters", () => {
     "./dataForTest/test_1.json",
     "./dataForTest/test_2.json",
     "./dataForTest/test_3.json",
-    "./dataForTest/test_4.json"
+    "./dataForTest/test_4.json",
   ];
 
   async function loadData(dataPath: string) {
