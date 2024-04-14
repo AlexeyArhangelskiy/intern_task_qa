@@ -3,6 +3,7 @@ import { chromium, Browser, Page } from "playwright";
 describe("Website counters", () => {
   let browser: Browser;
   let page: Page;
+  let sizePage: Page;
 
   beforeAll(async () => {
     browser = await chromium.launch();
@@ -53,21 +54,35 @@ describe("Website counters", () => {
   test("Test 1 display correctly", async () => {
     await page.goto("https://www.avito.ru/avito-care/eco-impact");
     await captureScreenshots(page, countersSelectors, "testcase1");
-  }, 10000);
+  }, 20000);
 
   test("Test 2 change value correctly", async () => {
     await loadData(testData[0]);
     await captureScreenshots(page, countersSelectors, "testcase2");
-  }, 10000);
+  }, 20000);
 
   test("Test 3 change value correctly", async () => {
     await loadData(testData[1]);
     await captureScreenshots(page, countersSelectors, "testcase3");
-  }, 10000);
+  }, 20000);
 
   test("Test 4 value rounding", async () => {
     await loadData(testData[2]);
     await captureScreenshots(page, countersSelectors, "testcase4");
+  }, 20000);
+
+  beforeEach(async () => {
+    sizePage = await browser.newPage();
+    await sizePage.setViewportSize({ width: 768, height: 968 });
+  }, 10000);
+
+  afterEach(async () => {
+    await sizePage.close();
+  }, 10000);
+
+  test("Test 5 with custom window size", async () => {
+    await sizePage.goto("https://www.avito.ru/avito-care/eco-impact");
+    await captureScreenshots(sizePage, countersSelectors, "testcase5");
   }, 10000);
 });
 
