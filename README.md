@@ -38,9 +38,9 @@ npm install
 3. Настройка тестов<br>
    Убедитесь, что ваш проект настроен для работы с Jest и Playwright. Проверьте конфигурационные файлы, такие как jest.config.js и package.json, чтобы убедиться, что все пути и настройки указаны корректно.
 
-   Если вы получили ошибку похожую на эту<br>
-   `Looks like Playwright Test or Playwright was just installed or updated.<br>
- Please run the following command to download new browsers:`<br>
+   Если вы получили ошибку похожую на эту:<br>
+   `Looks like Playwright Test or Playwright was just installed or updated.
+Please run the following command to download new browsers`<br>
    пожалуйста выполните команду:
 
 ```bash
