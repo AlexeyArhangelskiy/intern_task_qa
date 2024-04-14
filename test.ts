@@ -24,6 +24,7 @@ describe("Website counters", () => {
     "./dataForTest/test_1.json",
     "./dataForTest/test_2.json",
     "./dataForTest/test_3.json",
+    "./dataForTest/test_4.json"
   ];
 
   async function loadData(dataPath: string) {
@@ -71,6 +72,11 @@ describe("Website counters", () => {
     await captureScreenshots(page, countersSelectors, "testcase4");
   }, 20000);
 
+  test("Test 5 expected value", async () => {
+    await loadData(testData[3]);
+    await captureScreenshots(page, countersSelectors, "testcase5");
+  }, 20000);
+
   beforeEach(async () => {
     sizePage = await browser.newPage();
     await sizePage.setViewportSize({ width: 768, height: 968 });
@@ -80,9 +86,9 @@ describe("Website counters", () => {
     await sizePage.close();
   }, 10000);
 
-  test("Test 5 with custom window size", async () => {
+  test("Test 6 with custom window size", async () => {
     await sizePage.goto("https://www.avito.ru/avito-care/eco-impact");
-    await captureScreenshots(sizePage, countersSelectors, "testcase5");
+    await captureScreenshots(sizePage, countersSelectors, "testcase6");
   }, 10000);
 });
 

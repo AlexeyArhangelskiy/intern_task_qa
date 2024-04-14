@@ -18,4 +18,4 @@ low
 
 ## Скриншот
 
-![Screenshot](./output/testcase3_2.png)
+![Screenshot](./output/testcase3_1.png)
