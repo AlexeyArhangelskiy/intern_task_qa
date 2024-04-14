@@ -20,6 +20,9 @@ describe("Website counters", () => {
     ".desktop-impact-items-F7T6E > div:nth-child(6)",
   ];
 
+  const pageUrl = "https://www.avito.ru/avito-care/eco-impact";
+  const backendApi = "https://www.avito.ru/web/1/charity/ecoImpact/init";
+
   const testData = [
     "./dataForTest/test_1.json",
     "./dataForTest/test_2.json",
@@ -29,7 +32,7 @@ describe("Website counters", () => {
 
   async function loadData(dataPath: string) {
     await page.route(
-      "https://www.avito.ru/web/1/charity/ecoImpact/init",
+      backendApi,
       (route) => {
         route.fulfill({
           body: JSON.stringify(require(dataPath)),
@@ -37,7 +40,7 @@ describe("Website counters", () => {
       },
     );
 
-    await page.goto("https://www.avito.ru/avito-care/eco-impact");
+    await page.goto(pageUrl);
   }
 
   async function captureScreenshots(
@@ -53,7 +56,7 @@ describe("Website counters", () => {
   }
 
   test("Test 1 display correctly", async () => {
-    await page.goto("https://www.avito.ru/avito-care/eco-impact");
+    await page.goto(pageUrl);
     await captureScreenshots(page, countersSelectors, "testcase1");
   }, 20000);
 
@@ -77,17 +80,10 @@ describe("Website counters", () => {
     await captureScreenshots(page, countersSelectors, "testcase5");
   }, 20000);
 
-  beforeEach(async () => {
-    sizePage = await browser.newPage();
-    await sizePage.setViewportSize({ width: 768, height: 968 });
-  }, 10000);
-
-  afterEach(async () => {
-    await sizePage.close();
-  }, 10000);
-
   test("Test 6 with custom window size", async () => {
-    await sizePage.goto("https://www.avito.ru/avito-care/eco-impact");
+    sizePage = await browser.newPage();
+    await sizePage.goto(pageUrl);
+    await sizePage.setViewportSize({ width: 768, height: 968 });
     await captureScreenshots(sizePage, countersSelectors, "testcase6");
   }, 10000);
 });
